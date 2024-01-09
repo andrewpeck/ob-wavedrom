@@ -51,13 +51,6 @@
   (let* ((out-file (or (cdr (assoc :file params))
                        (error "Wavedrom requires a \":file\" header argument")))
          (extension (downcase (file-name-extension  out-file)))
-         (theme (cdr (assoc :theme params)))
-         (width (cdr (assoc :width params)))
-         (height (cdr (assoc :height params)))
-         (background-color (cdr (assoc :background-color params)))
-         (wavedrom-config-file (cdr (assoc :wavedrom-config-file params)))
-         (css-file (cdr (assoc :css-file params)))
-         (pupeteer-config-file (cdr (assoc :pupeteer-config-file params)))
          (temp-file (org-babel-temp-file "wavedrom-"))
          (wavedrom-cli (or ob-wavedrom-cli-path
                            (executable-find "wavedrom-cli")
