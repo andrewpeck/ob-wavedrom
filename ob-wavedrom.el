@@ -1,6 +1,6 @@
 ;;; ob-wavedrom.el --- org-babel support for wavedrom evaluation
 
-;; Copyright (C) 2023-2024 Andrew Peck
+;; Copyright (C) 2024-2026 Andrew Peck
 
 ;; Author: Andrew Peck
 ;; URL: https://github.com/andrewpeck/ob-wavedrom
@@ -41,7 +41,7 @@
   '((:results . "file") (:exports . "results"))
   "Default arguments for evaluating a wavedrom source block.")
 
-(defcustom ob-wavedrom-cli-path nil
+(defcustom ob-wavedrom-cli-path (executable-find "wavedrom-cli")
   "Path to wavedrom.cli executable."
   :group 'org-babel
   :type 'string)
@@ -53,7 +53,6 @@
          (extension (downcase (file-name-extension  out-file)))
          (temp-file (org-babel-temp-file "wavedrom-"))
          (wavedrom-cli (or ob-wavedrom-cli-path
-                           (executable-find "wavedrom-cli")
                            (error "`ob-wavedrom-cli-path' is not set and wavedrom-cli is not in `exec-path'")))
          (cmd (concat
                (shell-quote-argument (expand-file-name wavedrom-cli))
